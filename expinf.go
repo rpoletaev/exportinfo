@@ -16,7 +16,8 @@ type ExportInfo struct {
 	Version string
 }
 
-func getExportInfo(xmlContent string) (*ExportInfo, error) {
+// GetExportInfo извлекает версию и тип документа
+func GetExportInfo(xmlContent string) (*ExportInfo, error) {
 	r, err := regexp.Compile(`<(.+:)*([a-zA-Z]*\d*[a-zA-Z]*) schemeVersion=\"(.+?)\".*>`)
 	if err != nil {
 		return nil, err
