@@ -18,15 +18,15 @@ type ExportInfo struct {
 
 // GetExportInfo извлекает версию и тип документа
 func GetExportInfo(xmlContent string) (*ExportInfo, error) {
-	r, err := regexp.Compile(`<(.+:)*([a-zA-Z]*\d*[a-zA-Z]*) schemeVersion=\"(.+?)\".*>`)
+	r, err := regexp.Compile(`<([a-z]+\d?[:]{1})?([a-zA-Z]*\d*[a-zA-Z]*[\S]).*(\sschemeVersion=\"(.+?)\").*>`)
 	if err != nil {
 		return nil, err
 	}
 
 	results := r.FindStringSubmatch(xmlContent)
-	if len(results) < 4 {
+	if len(results) < 5 {
 		return nil, fmt.Errorf("Wrong format export file, could not determine version and title")
 	}
 
-	return &ExportInfo{Title: results[2], Version: results[3]}, nil
+	return &ExportInfo{Title: results[2], Version: results[4]}, nil
 }

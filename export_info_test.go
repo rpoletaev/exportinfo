@@ -1,6 +1,7 @@
 package exportinfo
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -40,15 +41,28 @@ func TestGetExportInfo(t *testing.T) {
 				Version: "4.2",
 			},
 		},
+		Tst{
+			Input: `<ns2:contractProcedure xsi:type="ns3:zfcs_contractProcedureType" schemeVersion="4.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`,
+			Expected: ExportInfo{
+				Title:   "contractProcedure",
+				Version: "4.5",
+			},
+		},
 	}
 
-	for _, test := range tests {
-		got, err := getExportInfo(test.Input)
-		if err != nil && test.IsError {
-			return
+	for i, test := range tests {
+		got, err := GetExportInfo(test.Input)
+		fmt.Printf("%d\n", i)
+		if err != nil {
+			if test.IsError {
+				return
+			}
+
+			t.Error(err)
 		}
 
 		if *got != test.Expected {
+			t.Errorf("got %v != Expected %v", *got, test.Expected)
 			t.Fail()
 		}
 	}
