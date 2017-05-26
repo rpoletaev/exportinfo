@@ -62,6 +62,13 @@ func TestGetExportInfo(t *testing.T) {
 				Version: "1.0",
 			},
 		},
+		Tst{
+			Input: `	<ns2:sketchPlan schemeVersion="1.0" xmlns="http://zakupki.gov.ru/oos/types/1" xmlns:ns2="http://zakupki.gov.ru/oos/printform/1">`,
+			Expected: ExportInfo{
+				Title:   "sketchPlan",
+				Version: "1.0",
+			},
+		},
 	}
 
 	for i, test := range tests {
