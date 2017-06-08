@@ -63,7 +63,6 @@ func TestGetExportInfo(t *testing.T) {
 			},
 		},
 		Tst{
-<<<<<<< HEAD
 			Input: `<contract schemeVersion="4.5">`,
 			Expected: ExportInfo{
 				Title:   "contract",
