@@ -63,6 +63,7 @@ func TestGetExportInfo(t *testing.T) {
 			},
 		},
 		Tst{
+<<<<<<< HEAD
 			Input: `<contract schemeVersion="4.5">`,
 			Expected: ExportInfo{
 				Title:   "contract",
@@ -105,6 +106,7 @@ func TestGetExportInfo2(t *testing.T) {
 				Version: "1.0",
 			},
 		},
+
 		Tst{
 			Input: `<ns2:fcsPurchaseDocument schemeVersion="4.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">`,
 			Expected: ExportInfo{
